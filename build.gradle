@@ -58,7 +58,13 @@ task pruebaGradle << {
 
 buildscript {
     repositories {
-        jcenter()
+        maven {
+            url 'http://localhost:8081/artifactory/gradle-dev'
+            credentials {
+                username = "${artifactory_user}"
+                password = "${artifactory_password}"
+            }
+        }
         
     }
     dependencies {
