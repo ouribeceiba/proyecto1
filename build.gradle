@@ -10,8 +10,11 @@
 apply plugin: 'java-library'
 apply plugin: 'jacoco'
 apply plugin: 'eclipse'
+apply plugin: 'maven-publish'
+apply plugin: 'com.jfrog.artifactory'
 
-version = '1.0'
+group = 'com.ceiba'
+version = '1.0-SNAPSHOT'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
@@ -87,6 +90,9 @@ artifactory {
             maven = true
             
         }
+        defaults {
+        	publications('mavenJava')
+        }
     }
     resolve {
         repository {
@@ -97,5 +103,13 @@ artifactory {
             
         }
     }
+}
+
+publishing {
+	publications {
+		mavenJava(MavenPublication) {
+			from components.java
+		}
+	}
 }
 
